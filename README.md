@@ -1,1 +1,1 @@
-A directory of my leetcode submissions for the January and Feburary context.
+A directory of my leetcode submissions for the January and Feburary contest.
