@@ -24,21 +24,29 @@ constraints:
     - left subtree <= root 
      -right subtree > root
 '''
+class Treenode:
+    def __init__(self,data=0,left=None,right=None):
+        self.left  = left
+        self.right = right
 def solve(root):
     #base case
-    if not root:
-        return None
-    else:
-        #In order traversal to construct the LLISt
-        left_node = solve(root.left)
-        if left_node:
-            root.left = left_node
-            left_node.right = root
-        #Process the right subtree
-        right_node = solve(root.right)
-        if right_node:
-            right_node.left = root 
-            root.right = right_node
+        stack = []
+        curr = root
+        prev = None
+        first = None
+        while curr or stack:
+            if curr:
+                stack.append(curr)
+                curr = curr.left
+            else:
+                curr = stack.pop()
+                if not prev:
+                    first = curr
+                else:
+                    prev.right = curr
+                    curr.left = prev
+                    curr = prev
+                curr = curr.right
 
         return  right_node if right_node else root
 solve(3)
